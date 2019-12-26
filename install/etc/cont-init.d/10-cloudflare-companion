@@ -70,11 +70,11 @@ def check_container(c):
                 cont_id = c.attrs.get(u'Id')
                 if ',' in value:
                     for v in value.split(","):
-                        v = v.strip("`")
+                        v = v.strip("\`")
                         print "Found Container:",cont_id,"with Multi-Hostname",v 
                         point_domain(v)
                 else:
-                    value = value.strip("`")
+                    value = value.strip("\`")
                     print "Found Container:",cont_id,"with Hostname", value 
                     point_domain(value)
             else:
