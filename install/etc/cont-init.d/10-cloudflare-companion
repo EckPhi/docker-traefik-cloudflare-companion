@@ -66,13 +66,15 @@ def check_container(c):
          if re.match('traefik.*.rule', prop) :
             value = c.attrs.get(u'Config').get(u'Labels').get(prop)
             if 'Host' in value:
-                value = value[value.find("Host(")+5:value.find(")")].replace("`","").strip()
+                value = value[value.find("Host(")+5:value.find(")")].strip()
                 cont_id = c.attrs.get(u'Id')
                 if ',' in value:
                     for v in value.split(","):
+                        v = v.strip("`")
                         print "Found Container:",cont_id,"with Multi-Hostname",v 
                         point_domain(v)
                 else:
+                    value = value.strip("`")
                     print "Found Container:",cont_id,"with Hostname", value 
                     point_domain(value)
             else:
