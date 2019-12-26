@@ -66,7 +66,7 @@ def check_container(c):
          if re.match('traefik.*.rule', prop) :
             value = c.attrs.get(u'Config').get(u'Labels').get(prop)
             if 'Host' in value:
-                value = value[value.find("Host(")+5:value.find(")")].strip()
+                value = value[value.find("Host(")+5:value.find(")")].replace("`","").strip()
                 cont_id = c.attrs.get(u'Id')
                 if ',' in value:
                     for v in value.split(","):
